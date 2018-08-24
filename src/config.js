@@ -1,16 +1,18 @@
+require("dotenv").config();
+
 export default {
   s3: {
-    REGION: '',
-    BUCKET: '',
+    REGION: REGION,
+    BUCKET: S3_BUCKET
   },
   apiGateway: {
-    REGION: '',
-    URL: ''
+    REGION: REGION,
+    URL: API_GATEWAY_URL
   },
   cognito: {
-    REGION: '',
-    USER_POOL_ID: '',
-    APP_CLIENT_ID: '',
-    IDENTITY_POOL_ID: ''
+    REGION: REGION,
+    USER_POOL_ID: USER_POOL_ID,
+    APP_CLIENT_ID: APP_CLIENT_ID,
+    IDENTITY_POOL_ID: IDENTITY_POOL_ID
   }
-}
+};
