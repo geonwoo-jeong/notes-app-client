@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { PageHeader, ListGroup } from "react-bootstrap";
+import { API } from "aws-amplify";
+import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import "./Home.css";
 
 export default class Home extends Component {
@@ -12,9 +13,55 @@ export default class Home extends Component {
     };
   }
 
-  renderNoteList(notes) {
-    return null;
+  async componentDidMount() {
+    if (!this.props.isAuthenticated) {
+      return;
+    }
+
+    try {
+      const notes = await this.notes();
+      this.setState({ notes });
+    } catch (e) {
+      alert(e);
+    }
+
+    this.setState({ isLoading: false });
   }
+
+  notes() {
+    return API.get("notes", "/notes");
+  }
+
+  renderNoteList(notes) {
+    return [{}].concat(notes).map(
+      (note, i) =>
+        i !== 0 ? (
+          <ListGroupItem
+            key={note.noteId}
+            href={`/notes/${note.noteId}`}
+            onClick={this.handleNoteClick}
+            header={note.content.trim().split("\n")[0]}
+          >
+            {"Created: " + new Date(note.createdAt).toLocaleString()}
+          </ListGroupItem>
+        ) : (
+          <ListGroupItem
+            ket="new"
+            href="/notes/new"
+            onClick={this.handleNoteClick}
+          >
+            <h4>
+              <p>{"\uFF0B"}</p> Create a new note
+            </h4>
+          </ListGroupItem>
+        )
+    );
+  }
+
+  handleNoteClick = event => {
+    event.preventDefault();
+    this.props.history.push(event.currentTaget.getAttributes("href"));
+  };
 
   renderLander() {
     return (
