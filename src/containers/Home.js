@@ -32,7 +32,7 @@ export default class Home extends Component {
     return API.get("notes", "/notes");
   }
 
-  renderNoteList(notes) {
+  renderNotesList(notes) {
     return [{}].concat(notes).map(
       (note, i) =>
         i !== 0 ? (
@@ -60,7 +60,7 @@ export default class Home extends Component {
 
   handleNoteClick = event => {
     event.preventDefault();
-    this.props.history.push(event.currentTaget.getAttributes("href"));
+    this.props.history.push(event.currentTarget.getAttribute("href"));
   };
 
   renderLander() {
