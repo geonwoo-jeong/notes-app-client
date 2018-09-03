@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { API } from "aws-amplify";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { API } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
-import "./NewNote.css";
 import { s3Upload } from "../libs/awsLib";
+import "./NewNote.css";
 
 export default class NewNote extends Component {
   constructor(props) {
@@ -88,7 +88,7 @@ export default class NewNote extends Component {
             type="submit"
             isLoading={this.state.isLoading}
             text="Create"
-            loadingText="Creating---"
+            loadingText="Creating…"
           />
         </form>
       </div>

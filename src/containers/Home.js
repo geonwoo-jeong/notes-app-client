@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { API } from "aws-amplify";
 import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
+import { API } from "aws-amplify";
 import "./Home.css";
 
 export default class Home extends Component {
@@ -46,12 +46,12 @@ export default class Home extends Component {
           </ListGroupItem>
         ) : (
           <ListGroupItem
-            ket="new"
+            key="new"
             href="/notes/new"
             onClick={this.handleNoteClick}
           >
             <h4>
-              <p>{"\uFF0B"}</p> Create a new note
+              <b>{"\uFF0B"}</b> Create a new note
             </h4>
           </ListGroupItem>
         )
